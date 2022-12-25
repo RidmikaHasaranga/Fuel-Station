@@ -1,12 +1,12 @@
 package CaurseWork;
 
 public class FuelRepository {
-    private String fuelType;
+    private int fuelType;
     private float fuelLeft;
     private float capacity;
 
     //Constructor
-    public FuelRepository(String fuelType, float capacity){
+    public FuelRepository(int fuelType, float capacity){
         this.fuelType = fuelType;
         this.capacity = capacity;
         fuelLeft = 0;
@@ -20,7 +20,7 @@ public class FuelRepository {
         return fuelLeft;
     }
 
-    public String getFuelType() {
+    public int getFuelType() {
         return fuelType;
     }
 

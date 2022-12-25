@@ -2,13 +2,13 @@ package CaurseWork;
 
 public class Customer {
     private int vehicleNumber;
-    private String vehicleType;
-    private String fuelType;
+    private int vehicleType;
+    private int fuelType;
     private double amountOfFuelRequired;
     private boolean gotTicket;
 
     //Constructor
-    public Customer(int vehicleNumber, String vehicleType, String fuelType, float amountOfFuelRequired, boolean gotTicket) {
+    public Customer(int vehicleNumber, int vehicleType, int fuelType, float amountOfFuelRequired, boolean gotTicket) {
         this.vehicleNumber = vehicleNumber;
         this.vehicleType = vehicleType;
         this.fuelType = fuelType;
@@ -26,11 +26,11 @@ public class Customer {
         return vehicleNumber;
     }
 
-    public String getVehicleType() {
+    public int getVehicleType() {
         return vehicleType;
     }
 
-    public String getFuelType() {
+    public int getFuelType() {
         return fuelType;
     }
 

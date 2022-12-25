@@ -3,11 +3,18 @@ package CaurseWork;
 public class FuelQueue extends Queue{
     private final int maximumCustomers = 10;
     private int noOfCustomers;
-    private String[] allowedVehicle;
+    private int[] allowedVehicle;
+    // vehicles allowed
+    //1 - car
+    //2 - van
+    //3- threewheel
+    //4 - motorbike
+    //5 - public transport
+    //6 - other
     private WaitingQueue waitingQueue;
 
     //Constructor
-    public FuelQueue(String[] vehiclesAllowed, WaitingQueue waitingQueue){
+    public FuelQueue(int[] vehiclesAllowed, WaitingQueue waitingQueue){
         super();
         this.noOfCustomers = 0;
         this.allowedVehicle = vehiclesAllowed;
@@ -48,8 +55,8 @@ public class FuelQueue extends Queue{
     }
 
     private boolean checkVehicleType(Customer customer){
-        for (String s : allowedVehicle) {
-            if (s.equals(customer.getVehicleType())) {
+        for (int s : allowedVehicle) {
+            if (s==customer.getVehicleType()) {
                 return true;
             }
         }
@@ -57,7 +64,7 @@ public class FuelQueue extends Queue{
     }
 
     //allowed vehicle types
-    public String[] getVehiclesAllowed() {
+    public int[] getVehiclesAllowed() {
         return allowedVehicle;
     }
 }

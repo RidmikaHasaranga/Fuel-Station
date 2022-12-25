@@ -1,48 +1,81 @@
 package CaurseWork;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class GasStationDriver {
     public static void main(String[] args) {
-        initialize();
+        DbConnector dbConnector = new DbConnector();
+        dbConnector.connect();
+        GasStationManager manager = dbConnector.getGasStationManager();
+
+        //add exception handling
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("------------------------------------");
+        System.out.println("1. Add a vehicle to the fuel queue");
+        System.out.println("2. Serve a vehicle");
+        System.out.println("3. See the statistics");
+        System.out.println("4. Add new dispenser");
+        String userInput = scanner.next();
+
+        switch (userInput) {
+            case "1":
+                //TO-DO
+                //code to add a vehicle
+                //add exception handling
+
+                break;
+            case "2":
+                //TO-DO
+                //code to serve a vehicle
+                //add exception handling
+                break;
+            case "3":
+                //TO-DO
+                //code to see stats
+                //add exception handling
+                Scanner scannerCase3 = new Scanner(System.in);
+                System.out.println("------------------------------------");
+                System.out.println("1. Total fuel dispensed per vehicle type per fuel type");
+                System.out.println("2. The vehicle that received the largest amount of fuel for the day and the type of fuel received");
+                System.out.println("3. Total number of vehicles served by each dispenser along with the amount of fuel and the total income per dispenser");
+                System.out.println("4. Total income of the gas station  per day per fuel type");
+                System.out.println("5. Remaining stock");
+                String selectedStats = scannerCase3.next();
+                if (selectedStats.equals("1")) {
+
+                }
+                else if (selectedStats.equals("2")){
+
+                }
+                else if (selectedStats.equals("3")){
+
+                }
+                else if (selectedStats.equals("4")){
+                    float petrolIncome = 0;
+                    float dieselIncome = 0;
+                    ArrayList<Detail> petrolDataArray = OctaneFuelDispenserManager.getDetailArray();
+                    ArrayList<Detail> dieselDataArray = DieselFuelDispenseManager.getDetailArray();
+                    for (int i=0; i<petrolDataArray.size(); i++){
+                        petrolIncome += petrolDataArray.get(i).getCustomer().getAmountOfFuelRequired() * OctaneFuelDispenserManager.getPricePerLiter();
+                    }
+                    for (int i=0; i<dieselDataArray.size(); i++){
+                        dieselIncome += petrolDataArray.get(i).getCustomer().getAmountOfFuelRequired() * OctaneFuelDispenserManager.getPricePerLiter();
+                    }
+                    System.out.println("Total Income from Petrol Dispensers : " + petrolIncome);
+                    System.out.println("Total Income from Diesel Dispensers : " + dieselIncome);
+                }
+                else if (selectedStats.equals("5")){
+                    float petrolStock = manager.getPetrolRepository().checkFuelLeft();
+                    float dieselStock = manager.getDieselRepository().checkFuelLeft();
+                    System.out.println("Petrol Stock Left : " + petrolStock);
+                    System.out.println("Diesel Stock Left : " + dieselStock);
+                }
+                break;
+            default:
+                //TO-DO
+                //exception
+        }
     }
 
-    private static void initialize(){
-        //Creating Repository Objects
-        FuelRepository dieselRepository = new FuelRepository("Diesel", 25000);
-        FuelRepository petrolRepository = new FuelRepository("Petrol", 25000);
-
-        //Creating Gas Station Manager (Owner) Object
-        GasStationManager owner = new GasStationManager(petrolRepository, dieselRepository);
-        WaitingQueue waitingQueue = new WaitingQueue();
-
-        //Creating Fuel Queue Objects (Petrol & Diesel)
-        FuelQueue petrolQueue1 = new FuelQueue(new String[]{"Car", "Van"}, waitingQueue);
-        FuelQueue petrolQueue2 = new FuelQueue(new String[]{"Car", "Van", "Three_Wheeler", "Motor_Bike","Other_Vehicle"}, waitingQueue);
-        FuelQueue petrolQueue3 = new FuelQueue(new String[]{"Three_Wheeler"}, waitingQueue);
-        FuelQueue petrolQueue4 = new FuelQueue(new String[]{"Motor_Bike"}, waitingQueue);
-
-        FuelQueue dieselQueue1 = new FuelQueue(new String[]{"Public_Transport"}, waitingQueue);
-        FuelQueue dieselQueue2 = new FuelQueue(new String[]{"Other"}, waitingQueue);
-        FuelQueue dieselQueue3 = new FuelQueue(new String[]{"Other"}, waitingQueue);
-
-        //Creating Octane Fuel Dispenser Manager Objects
-        OctaneFuelDispenserManager petrolDispenser1 = new OctaneFuelDispenserManager(petrolQueue1, petrolRepository, 450, "Petrol");
-        OctaneFuelDispenserManager petrolDispenser2 = new OctaneFuelDispenserManager(petrolQueue2, petrolRepository, 450, "Petrol");
-        OctaneFuelDispenserManager petrolDispenser3 = new OctaneFuelDispenserManager(petrolQueue3, petrolRepository, 450, "Petrol");
-        OctaneFuelDispenserManager petrolDispenser4 = new OctaneFuelDispenserManager(petrolQueue4, petrolRepository, 450, "Petrol");
-
-        //Creating Diesel Fuel Dispense Manager Objects
-        DieselFuelDispenseManager dieselDispenser1 = new DieselFuelDispenseManager(dieselQueue1, dieselRepository, 430, "Diesel");
-        DieselFuelDispenseManager dieselDispenser2 = new DieselFuelDispenseManager(dieselQueue2, dieselRepository, 430, "Diesel");
-        DieselFuelDispenseManager dieselDispenser3 = new DieselFuelDispenseManager(dieselQueue3, dieselRepository, 430, "Diesel");
-
-        //Creating New Dispensers for Petrol & Diesel
-        owner.addOctaneDispenser(petrolDispenser1);
-        owner.addOctaneDispenser(petrolDispenser2);
-        owner.addOctaneDispenser(petrolDispenser3);
-        owner.addOctaneDispenser(petrolDispenser4);
-
-        owner.addDieselDispenser(dieselDispenser1);
-        owner.addDieselDispenser(dieselDispenser2);
-        owner.addDieselDispenser(dieselDispenser3);
-    }
 }

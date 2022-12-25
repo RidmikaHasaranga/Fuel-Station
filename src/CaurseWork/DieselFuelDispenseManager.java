@@ -8,10 +8,10 @@ public class DieselFuelDispenseManager implements FuelDispenseManager{
     private FuelQueue fuelQueue;
     private FuelRepository repository;
     private static float pricePerLiter;
-    private String fuelType;
+    private int fuelType;
 
     //Constructor
-    public DieselFuelDispenseManager(FuelQueue fuelQueue, FuelRepository repository, float pricePerLiter, String fuelType) {
+    public DieselFuelDispenseManager(FuelQueue fuelQueue, FuelRepository repository, float pricePerLiter, int fuelType) {
         this.fuelQueue = fuelQueue;
         this.repository = repository;
         DieselFuelDispenseManager.pricePerLiter = pricePerLiter;
@@ -37,7 +37,7 @@ public class DieselFuelDispenseManager implements FuelDispenseManager{
     }
 
     public static Customer getHighestAmountOfFuel(DateTime date){
-        Customer highestAmountOfFuel = new Customer(0, "temp", "temp", 0, false);//temp values as first object for check highest amount of fuel
+        Customer highestAmountOfFuel = new Customer(0, 0, 1, 0, false);//temp values as first object for check highest amount of fuel
         for (Detail detail : detailArray) {
             if (detail.getDateTime() == date) {
                 if (detail.getCustomer().getAmountOfFuelRequired() > highestAmountOfFuel.getAmountOfFuelRequired()) {
@@ -48,10 +48,10 @@ public class DieselFuelDispenseManager implements FuelDispenseManager{
         return highestAmountOfFuel;
     }
 
-    public static float totalFuelDispensed(String vehicleType){
+    public static float totalFuelDispensed(int vehicleType){
         float totalFuelDispensed = 0;
         for (Detail detail : detailArray) {
-            if (detail.getCustomer().getVehicleType().equals(vehicleType)) {
+            if (detail.getCustomer().getVehicleType()==vehicleType) {
                 totalFuelDispensed += detail.getCustomer().getAmountOfFuelRequired();
             }
         }
@@ -93,7 +93,7 @@ public class DieselFuelDispenseManager implements FuelDispenseManager{
         return pricePerLiter;
     }
 
-    public String getFuelType() {
+    public int getFuelType() {
         return fuelType;
     }
 

@@ -33,9 +33,6 @@
               <option name="jarUrl" value="C:\Users\ridmi\AppData\Roaming\JetBrains\IntelliJIdea2022.3\jdbc-drivers\MySQL ConnectorJ\8.0.21\mysql-connector-java-8.0.21.jar" />
               <option name="myUniqueId" value="57992eec-65d1-453a-8963-367abb8231c6" />
               <option name="port" value="3306" />
-              <option name="properties">
-                <map />
-              </option>
               <option name="schemaSourceDto">
                 <SchemaSourceDto>
                   <option name="name" value="OOP_CW" />
@@ -45,27 +42,214 @@
                         <option name="columns">
                           <list>
                             <ColumnSourceDto>
-                              <option name="collationName" value="utf8mb4_0900_ai_ci" />
                               <option name="columnComment" value="" />
-                              <option name="columnName" value="Fuel_Type" />
-                              <option name="columnType" value="varchar(45)" />
-                              <option name="dataType" value="12" />
-                              <option name="dataTypeStr" value="VARCHAR" />
+                              <option name="columnName" value="customer_id" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
                               <option name="extra" value="" />
                               <option name="ordinalPosition" value="1" />
                               <option name="pk" value="true" />
-                              <option name="size" value="45" />
-                              <option name="tableName" value="fuel_repository" />
+                              <option name="tableName" value="customer" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="collationName" value="utf8mb4_0900_ai_ci" />
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="registration_no" />
+                              <option name="columnType" value="varchar(10)" />
+                              <option name="dataType" value="12" />
+                              <option name="dataTypeStr" value="VARCHAR" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="2" />
+                              <option name="size" value="10" />
+                              <option name="tableName" value="customer" />
+                              <option name="typeName" value="VARCHAR" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="collationName" value="utf8mb4_0900_ai_ci" />
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="vehicle_type" />
+                              <option name="columnType" value="varchar(15)" />
+                              <option name="dataType" value="12" />
+                              <option name="dataTypeStr" value="VARCHAR" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="3" />
+                              <option name="size" value="15" />
+                              <option name="tableName" value="customer" />
+                              <option name="typeName" value="VARCHAR" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="collationName" value="utf8mb4_0900_ai_ci" />
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="fuel_type" />
+                              <option name="columnType" value="varchar(15)" />
+                              <option name="dataType" value="12" />
+                              <option name="dataTypeStr" value="VARCHAR" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="4" />
+                              <option name="size" value="15" />
+                              <option name="tableName" value="customer" />
                               <option name="typeName" value="VARCHAR" />
                             </ColumnSourceDto>
                             <ColumnSourceDto>
                               <option name="columnComment" value="" />
-                              <option name="columnName" value="Capacity" />
+                              <option name="columnName" value="fuel_needed_amount" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="5" />
+                              <option name="tableName" value="customer" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                          </list>
+                        </option>
+                        <option name="databaseType" value="MySql" />
+                        <option name="keys">
+                          <list>
+                            <ColumnIndexInfo>
+                              <option name="PK" value="true" />
+                              <option name="collation" value="A" />
+                              <option name="columnName" value="customer_id" />
+                              <option name="indexComment" value="" />
+                              <option name="indexName" value="PRIMARY" />
+                              <option name="indexType" value="BTREE" />
+                              <option name="tableName" value="customer" />
+                            </ColumnIndexInfo>
+                          </list>
+                        </option>
+                        <option name="schema" value="OOP_CW" />
+                        <option name="tableName" value="customer" />
+                        <option name="tableRemark" value="" />
+                        <option name="tableType" value="BASE TABLE" />
+                      </TableSourceDto>
+                      <TableSourceDto>
+                        <option name="columns">
+                          <list>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="dispenser_no" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="1" />
+                              <option name="pk" value="true" />
+                              <option name="tableName" value="diesel_dispenser" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="price_per_liter" />
+                              <option name="columnType" value="decimal(4,0)" />
+                              <option name="dataType" value="3" />
+                              <option name="dataTypeStr" value="DECIMAL" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="2" />
+                              <option name="size" value="4" />
+                              <option name="tableName" value="diesel_dispenser" />
+                              <option name="typeName" value="DECIMAL" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="repository_no" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="3" />
+                              <option name="tableName" value="diesel_dispenser" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="collationName" value="utf8mb4_0900_ai_ci" />
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="vehicle_allowed" />
+                              <option name="columnType" value="varchar(10)" />
+                              <option name="dataType" value="12" />
+                              <option name="dataTypeStr" value="VARCHAR" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="4" />
+                              <option name="size" value="10" />
+                              <option name="tableName" value="diesel_dispenser" />
+                              <option name="typeName" value="VARCHAR" />
+                            </ColumnSourceDto>
+                          </list>
+                        </option>
+                        <option name="databaseType" value="MySql" />
+                        <option name="keys">
+                          <list>
+                            <ColumnIndexInfo>
+                              <option name="PK" value="true" />
+                              <option name="collation" value="A" />
+                              <option name="columnName" value="dispenser_no" />
+                              <option name="indexComment" value="" />
+                              <option name="indexName" value="PRIMARY" />
+                              <option name="indexType" value="BTREE" />
+                              <option name="tableName" value="diesel_dispenser" />
+                            </ColumnIndexInfo>
+                            <ColumnIndexInfo>
+                              <option name="collation" value="A" />
+                              <option name="columnName" value="repository_no" />
+                              <option name="indexComment" value="" />
+                              <option name="indexName" value="repository_no_idx" />
+                              <option name="indexType" value="BTREE" />
+                              <option name="nonUnique" value="true" />
+                              <option name="tableName" value="diesel_dispenser" />
+                            </ColumnIndexInfo>
+                          </list>
+                        </option>
+                        <option name="schema" value="OOP_CW" />
+                        <option name="tableName" value="diesel_dispenser" />
+                        <option name="tableRemark" value="" />
+                        <option name="tableType" value="BASE TABLE" />
+                      </TableSourceDto>
+                      <TableSourceDto>
+                        <option name="columns">
+                          <list>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="repository_no" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="1" />
+                              <option name="pk" value="true" />
+                              <option name="tableName" value="fuel_repository" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="fuel_type" />
                               <option name="columnType" value="int" />
                               <option name="dataType" value="4" />
                               <option name="dataTypeStr" value="INT" />
                               <option name="extra" value="" />
                               <option name="ordinalPosition" value="2" />
+                              <option name="tableName" value="fuel_repository" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="capacity" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="3" />
+                              <option name="tableName" value="fuel_repository" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="fuel_left" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="4" />
                               <option name="tableName" value="fuel_repository" />
                               <option name="typeName" value="INTEGER" />
                             </ColumnSourceDto>
@@ -77,7 +261,7 @@
                             <ColumnIndexInfo>
                               <option name="PK" value="true" />
                               <option name="collation" value="A" />
-                              <option name="columnName" value="Fuel_Type" />
+                              <option name="columnName" value="repository_no" />
                               <option name="indexComment" value="" />
                               <option name="indexName" value="PRIMARY" />
                               <option name="indexType" value="BTREE" />
@@ -87,6 +271,167 @@
                         </option>
                         <option name="schema" value="OOP_CW" />
                         <option name="tableName" value="fuel_repository" />
+                        <option name="tableRemark" value="" />
+                        <option name="tableType" value="BASE TABLE" />
+                      </TableSourceDto>
+                      <TableSourceDto>
+                        <option name="columns">
+                          <list>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="dispenser_no" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="1" />
+                              <option name="pk" value="true" />
+                              <option name="tableName" value="petrol_dispenser" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="price_per_liter" />
+                              <option name="columnType" value="decimal(4,0)" />
+                              <option name="dataType" value="3" />
+                              <option name="dataTypeStr" value="DECIMAL" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="2" />
+                              <option name="size" value="4" />
+                              <option name="tableName" value="petrol_dispenser" />
+                              <option name="typeName" value="DECIMAL" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="repository_no" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="3" />
+                              <option name="tableName" value="petrol_dispenser" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="collationName" value="utf8mb4_0900_ai_ci" />
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="vehicle_allowed" />
+                              <option name="columnType" value="varchar(10)" />
+                              <option name="dataType" value="12" />
+                              <option name="dataTypeStr" value="VARCHAR" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="4" />
+                              <option name="size" value="10" />
+                              <option name="tableName" value="petrol_dispenser" />
+                              <option name="typeName" value="VARCHAR" />
+                            </ColumnSourceDto>
+                          </list>
+                        </option>
+                        <option name="databaseType" value="MySql" />
+                        <option name="keys">
+                          <list>
+                            <ColumnIndexInfo>
+                              <option name="PK" value="true" />
+                              <option name="collation" value="A" />
+                              <option name="columnName" value="dispenser_no" />
+                              <option name="indexComment" value="" />
+                              <option name="indexName" value="PRIMARY" />
+                              <option name="indexType" value="BTREE" />
+                              <option name="tableName" value="petrol_dispenser" />
+                            </ColumnIndexInfo>
+                            <ColumnIndexInfo>
+                              <option name="collation" value="A" />
+                              <option name="columnName" value="repository_no" />
+                              <option name="indexComment" value="" />
+                              <option name="indexName" value="repository_no_idx" />
+                              <option name="indexType" value="BTREE" />
+                              <option name="nonUnique" value="true" />
+                              <option name="tableName" value="petrol_dispenser" />
+                            </ColumnIndexInfo>
+                          </list>
+                        </option>
+                        <option name="schema" value="OOP_CW" />
+                        <option name="tableName" value="petrol_dispenser" />
+                        <option name="tableRemark" value="" />
+                        <option name="tableType" value="BASE TABLE" />
+                      </TableSourceDto>
+                      <TableSourceDto>
+                        <option name="columns">
+                          <list>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="id" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="1" />
+                              <option name="pk" value="true" />
+                              <option name="tableName" value="served_details" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="customer_no" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="2" />
+                              <option name="tableName" value="served_details" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="date" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="3" />
+                              <option name="tableName" value="served_details" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="month" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="4" />
+                              <option name="tableName" value="served_details" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                            <ColumnSourceDto>
+                              <option name="columnComment" value="" />
+                              <option name="columnName" value="year" />
+                              <option name="columnType" value="int" />
+                              <option name="dataType" value="4" />
+                              <option name="dataTypeStr" value="INT" />
+                              <option name="extra" value="" />
+                              <option name="ordinalPosition" value="5" />
+                              <option name="tableName" value="served_details" />
+                              <option name="typeName" value="INTEGER" />
+                            </ColumnSourceDto>
+                          </list>
+                        </option>
+                        <option name="databaseType" value="MySql" />
+                        <option name="keys">
+                          <list>
+                            <ColumnIndexInfo>
+                              <option name="PK" value="true" />
+                              <option name="collation" value="A" />
+                              <option name="columnName" value="id" />
+                              <option name="indexComment" value="" />
+                              <option name="indexName" value="PRIMARY" />
+                              <option name="indexType" value="BTREE" />
+                              <option name="tableName" value="served_details" />
+                            </ColumnIndexInfo>
+                          </list>
+                        </option>
+                        <option name="schema" value="OOP_CW" />
+                        <option name="tableName" value="served_details" />
                         <option name="tableRemark" value="" />
                         <option name="tableType" value="BASE TABLE" />
                       </TableSourceDto>
