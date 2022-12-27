@@ -13,27 +13,21 @@ public class GasStationDriver {
         Scanner scanner = new Scanner(System.in);
         System.out.println("------------------------------------");
         System.out.println("1. Add a vehicle to the fuel queue");
-        System.out.println("2. Serve a vehicle");
-        System.out.println("3. See the statistics");
-        System.out.println("4. Add new dispenser");
+        System.out.println("2. Serve Fuel");
+        System.out.println("3. Get Details");
+        System.out.println("4. Add a new dispenser");
         String userInput = scanner.next();
 
         switch (userInput) {
             case "1":
-                //TO-DO
-                //code to add a vehicle
-                //add exception handling
+                //Add a vehicle to the fuel queue
 
                 break;
             case "2":
-                //TO-DO
-                //code to serve a vehicle
-                //add exception handling
+                //Serve Fuel
+
                 break;
             case "3":
-                //TO-DO
-                //code to see stats
-                //add exception handling
                 Scanner scannerCase3 = new Scanner(System.in);
                 System.out.println("------------------------------------");
                 System.out.println("1. Total fuel dispensed per vehicle type per fuel type");
@@ -73,8 +67,7 @@ public class GasStationDriver {
                 }
                 break;
             default:
-                //TO-DO
-                //exception
+
         }
     }
 
