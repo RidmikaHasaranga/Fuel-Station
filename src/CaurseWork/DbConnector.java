@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DbConnector {
     Connection con = null;
@@ -42,18 +43,18 @@ public class DbConnector {
                 int[] vehiclesAllowed = convertToIntArray(vehiclesAllowedString);
                 FuelQueue petrolQueue = new FuelQueue(vehiclesAllowed, waitingQueue);
 
-                OctaneFuelDispenserManager petrolDispenser = new OctaneFuelDispenserManager(petrolQueue, petrolRepository, rsPetrolDispenser.getFloat(2), 1);
+                OctaneFuelDispenserManager petrolDispenser = new OctaneFuelDispenserManager(petrolQueue, petrolRepository, rsPetrolDispenser.getFloat(2), 1, rsPetrolDispenser.getString(1));
 
                 owner.addOctaneDispenser(petrolDispenser);
             }
 
-            ResultSet rsDieselDispenser = st.executeQuery("select  * from diesel_dispenser");
+            ResultSet rsDieselDispenser = st.executeQuery("select * from diesel_dispenser");
             while (rsDieselDispenser.next()){
                 String[] vehiclesAllowedString = rsDieselDispenser.getString(4).split(" ");
                 int[] vehiclesAllowed = convertToIntArray(vehiclesAllowedString);
                 FuelQueue dieselQueue = new FuelQueue(vehiclesAllowed, waitingQueue);
 
-                DieselFuelDispenseManager dieselDispener = new DieselFuelDispenseManager(dieselQueue, dieselRepository, rsDieselDispenser.getFloat(2), 2);
+                DieselFuelDispenseManager dieselDispener = new DieselFuelDispenseManager(dieselQueue, dieselRepository, rsDieselDispenser.getFloat(2), 2, rsDieselDispenser.getString(1));
 
                 owner.addDieselDispenser(dieselDispener);
             }
@@ -100,5 +101,38 @@ public class DbConnector {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    private void addDetailsArray() {
+        ArrayList<Detail> petrolDataArray = new ArrayList<>();
+        ArrayList<Detail> dieselDataArray = new ArrayList<>();
+        ArrayList<Integer> customerIDs = new ArrayList<>();
+        ArrayList<DateTime> dateTimes = new ArrayList<>();
+        ArrayList<String> dispenserIds = new ArrayList<>();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rsServedInfo = st.executeQuery("select * from served_details");
+            while (rsServedInfo.next()) {
+                DateTime dateTime = new DateTime(rsServedInfo.getInt(3), rsServedInfo.getInt(4), rsServedInfo.getInt(5));
+                dateTimes.add(dateTime);
+                customerIDs.add(rsServedInfo.getInt(2));
+                dispenserIds.add(rsServedInfo.getString(6));
+            }
+            for (int i = 0; i < customerIDs.size(); i++) {
+                ResultSet rsCustomer = st.executeQuery("SELECT * FROM programming_coursework.customer WHERE customer_id=" + customerIDs.get(i));
+                rsCustomer.next();
+                Customer customer = new Customer(rsCustomer.getInt(2), rsCustomer.getInt(3), rsCustomer.getInt(4), rsCustomer.getFloat(5), true);
+                Detail detail = new Detail(customer, dateTimes.get(i), dispenserIds.get(i));
+                if (rsCustomer.getInt(4) == 1) {
+                    petrolDataArray.add(detail);
+                } else if (rsCustomer.getInt(4) == 2) {
+                    dieselDataArray.add(detail);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        OctaneFuelDispenserManager.addDetail(petrolDataArray);
+        DieselFuelDispenseManager.addDetail(dieselDataArray);
     }
 }

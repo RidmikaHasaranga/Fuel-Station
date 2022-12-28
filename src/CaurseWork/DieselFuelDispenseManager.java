@@ -9,18 +9,20 @@ public class DieselFuelDispenseManager implements FuelDispenseManager{
     private FuelRepository repository;
     private static float pricePerLiter;
     private int fuelType;
+    private String dispenserID;
 
     //Constructor
-    public DieselFuelDispenseManager(FuelQueue fuelQueue, FuelRepository repository, float pricePerLiter, int fuelType) {
+    public DieselFuelDispenseManager(FuelQueue fuelQueue, FuelRepository repository, float pricePerLiter, int fuelType, String dispenserID) {
         this.fuelQueue = fuelQueue;
         this.repository = repository;
         DieselFuelDispenseManager.pricePerLiter = pricePerLiter;
         this.fuelType = fuelType;
+        this.dispenserID = dispenserID;
     }
 
     @Override
     public void serveCustomer(DateTime date) {
-        Detail detail = new Detail(fuelQueue.getFirstCustomer(), date);
+        Detail detail = new Detail(fuelQueue.getFirstCustomer(), date, this.dispenserID);
         detailArray.add(detail);
         incrementVehiclesServed();
         incrementProfit(fuelQueue.getFirstCustomer());
@@ -28,8 +30,8 @@ public class DieselFuelDispenseManager implements FuelDispenseManager{
     }
 
     //add object for Detail Class
-    public static void addDetail(Detail detail){
-        detailArray.add(detail);
+    public static void addDetail(ArrayList<Detail> detailArrayUserInput){
+        detailArray = detailArrayUserInput;
     }
 
     public static ArrayList<Detail> getDetailArray() {
