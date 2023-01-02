@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DbConnector {
     Connection con = null;
     public void connect(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OOP_CW?useSSL=false&serverTimezone=Asia/Colombo", "root", "iit#20210763");
         } catch (Exception e){
             System.out.println(e);
@@ -65,7 +66,7 @@ public class DbConnector {
         return owner;
     }
 
-    private static int[] convertToIntArray(String[] vehiclesAllowedString){
+    public static int[] convertToIntArray(String[] vehiclesAllowedString){
         int[] vehiclesAllowed = new int[vehiclesAllowedString.length];
         for (int i=0; i<vehiclesAllowedString.length; i++){
             vehiclesAllowed[i] = Integer.parseInt(vehiclesAllowedString[i]);
@@ -134,5 +135,89 @@ public class DbConnector {
         }
         OctaneFuelDispenserManager.addDetail(petrolDataArray);
         DieselFuelDispenseManager.addDetail(dieselDataArray);
+    }
+
+    public void addCustomerToQueue(GasStationManager manager, Customer customer){
+        if (customer.getFuelType() == 1) {
+            int count = 1;
+            ArrayList<OctaneFuelDispenserManager> allFuelDispensers = manager.getPetrolDispensers();
+            ArrayList<OctaneFuelDispenserManager> availableFuelDispensers = new ArrayList<>();
+            Scanner scanner5 = new Scanner(System.in);
+            for (OctaneFuelDispenserManager dispenser : allFuelDispensers) {
+                int[] vehiclesAllowed = dispenser.getFuelQueue().getVehiclesAllowed();
+                for (int j = 0; j < vehiclesAllowed.length; j++) {
+                    if (vehiclesAllowed[j] == customer.getVehicleType()) {
+                        if (dispenser.getFuelQueue().getFreeSpace() > 0) {
+                            System.out.println(count + ". 92 Octane Dispenser " + j + "(" + dispenser.getFuelQueue().getFreeSpace() + " free spaces)");
+                            assert false;
+                            availableFuelDispensers.add(dispenser);
+                            count++;
+                        }
+                    }
+                }
+            }
+            if (count > 1) {
+                int selectedDispenserString;
+                while (true) {
+                    try {
+                        scanner5 = new Scanner(System.in);
+                        selectedDispenserString = scanner5.nextInt();
+                        if (selectedDispenserString > 0 && selectedDispenserString <= count-1) {
+                            break;
+                        } else {
+                            throw new Exception();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid Input");
+                    }
+                }
+                assert false;
+                OctaneFuelDispenserManager selectedDispener = availableFuelDispensers.get(selectedDispenserString-1);
+                selectedDispener.getFuelQueue().addCustomer(customer);
+                customer.getTicket();
+            } else {
+                allFuelDispensers.get(0).getFuelQueue().getWaitingQueue().addCustomer(customer);
+            }
+        } else if (customer.getFuelType() == 2) {
+            int count = 1;
+            ArrayList<DieselFuelDispenseManager> allFuelDispensers = manager.getDieselDispenser();
+            ArrayList<DieselFuelDispenseManager> availableFuelDispensers = null;
+            Scanner scanner5 = new Scanner(System.in);
+            for (DieselFuelDispenseManager dispenser : allFuelDispensers) {
+                int[] vehiclesAllowed = dispenser.getFuelQueue().getVehiclesAllowed();
+                for (int j = 0; j < vehiclesAllowed.length; j++) {
+                    if (vehiclesAllowed[j] == customer.getVehicleType()) {
+                        if (dispenser.getFuelQueue().getFreeSpace() > 0) {
+                            System.out.println(count + ". Diesel Dispenser " + j + "(" + dispenser.getFuelQueue().getFreeSpace() + " free spaces)");
+                            assert false;
+                            availableFuelDispensers.add(dispenser);
+                            count++;
+                        }
+                    }
+                }
+            }
+            if (count > 1) {
+                int selectedDispenserString;
+                while (true) {
+                    try {
+                        scanner5 = new Scanner(System.in);
+                        selectedDispenserString = scanner5.nextInt();
+                        if (selectedDispenserString > 0 && selectedDispenserString <= count-1) {
+                            break;
+                        } else {
+                            throw new Exception();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid Input");
+                    }
+                }
+                assert false;
+                DieselFuelDispenseManager selectedDispener = availableFuelDispensers.get(selectedDispenserString-1);
+                selectedDispener.getFuelQueue().addCustomer(customer);
+                customer.getTicket();
+            } else {
+                allFuelDispensers.get(0).getFuelQueue().getWaitingQueue().addCustomer(customer);
+            }
+        }
     }
 }

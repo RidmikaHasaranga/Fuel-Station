@@ -26,12 +26,94 @@ public class GasStationDriver {
         switch (userInput) {
             case "1":
                 //Add a vehicle to the fuel queue
+                Scanner scannerCase1 = new Scanner(System.in);
+                System.out.println("1. Add new Vehicle");
+                System.out.println("2. Add vehicle from waiting queue");
+                String userScanner = scannerCase1.next();
+                if (userScanner.equals("1")) {
+                    Scanner scanner1 = new Scanner(System.in);
+                    System.out.println("What is the registration Number? (4 digits)");
+                    int registrationNumber = scanner1.nextInt();
+
+                    Scanner scanner2 = new Scanner(System.in);
+                    System.out.println("What is the vehicle type?");
+                    System.out.println("1. Car");
+                    System.out.println("2. Van");
+                    System.out.println("3. Three Wheel");
+                    System.out.println("4. Motor Bike");
+                    System.out.println("5. Public Transport");
+                    System.out.println("6. Other");
+                    int vehicleType = scanner2.nextInt();
+
+                    Scanner scanner3 = new Scanner(System.in);
+                    System.out.println("What is the fuel type?");
+                    System.out.println("1. Petrol");
+                    System.out.println("2. Diesel");
+                    int fuelType = scanner3.nextInt();
+
+                    Scanner scanner4 = new Scanner(System.in);
+                    System.out.println("How much fuel is needed?");
+                    float fuelNeeded = scanner4.nextFloat();
+
+                    Customer customer = new Customer(registrationNumber, vehicleType, fuelType, fuelNeeded, false);
+                    dbConnector.addCustomerToQueue(manager, customer);
+                }
+                else{
+                    if (manager.getPetrolDispensers().get(0).getFuelQueue().getWaitingQueue().customers.size() > 0) {
+                        Customer customer = manager.getPetrolDispensers().get(0).getFuelQueue().getWaitingQueue().getFirstCustomer();
+                        dbConnector.addCustomerToQueue(manager, customer);
+                    } else {
+                        System.out.println("No Customers in the Waiting Queue");
+                    }
+                }
+
 
                 break;
             case "2":
                 //Serve Fuel
+                Scanner scannerCase2 = new Scanner(System.in);
+                System.out.println("Enter Fuel Type");
+                System.out.println("1. Petrol");
+                System.out.println("2. Diesel");
+                int fuel = scannerCase2.nextInt();
 
+                if (fuel == 1) {
+                    //Display available petrol fuel dispensers
+                    for (int i = 0; i < manager.getPetrolDispensers().size(); i++) {
+                        int j = i + 1;
+                        System.out.println(j + ". Petrol Dispenser" + j);
+                    }
+                    //choose a fuel dispenser
+
+                    scannerCase2 = new Scanner(System.in);
+                    System.out.print("Select:");
+                    int choice = scannerCase2.nextInt();
+
+                    OctaneFuelDispenserManager octDisMan = manager.getPetrolDispensers().get(choice - 1);
+                    Date date = new Date();
+                    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    DateTime dateTime = new DateTime(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
+                    octDisMan.serveCustomer(dateTime);
+                } else {
+                    for (int i = 0; i < manager.getDieselDispenser().size(); i++) {
+                        int j = i + 1;
+                        System.out.println(j + ". Diesel Dispenser" + j);
+                    }
+
+                    //choose a fuel dispenser
+
+                    scannerCase2 = new Scanner(System.in);
+                    System.out.print(">>");
+                    int choice = scannerCase2.nextInt();
+
+                    DieselFuelDispenseManager dieselDisMan = manager.getDieselDispenser().get(choice - 1);
+                    Date date = new Date();
+                    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    DateTime dateTime = new DateTime(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
+                    dieselDisMan.serveCustomer(dateTime);
+                }
                 break;
+
             case "3":
                 Scanner scannerCase3 = new Scanner(System.in);
                 System.out.println("------------------------------------");
@@ -188,6 +270,37 @@ public class GasStationDriver {
                     System.out.println("Diesel Stock Left : " + dieselStock);
                 }
                 break;
+
+            case "4" : {
+                Scanner scannerCase4 = new Scanner(System.in);
+                System.out.println("1. Add a 92 Octane Dispenser");
+                System.out.println("2. Add a Diesel Dispenser");
+                String dispenser = scannerCase4.next();
+
+                Scanner scannerVehiclesAllowed = new Scanner(System.in);
+                System.out.println("What vehicles are allowed?");
+                System.out.println("1. Car");
+                System.out.println("2. Van");
+                System.out.println("3. Three Wheel");
+                System.out.println("4. Motor Bike");
+                System.out.println("5. Public Transport");
+                System.out.println("6. Other");
+
+                String vehiclesAllowed = scannerVehiclesAllowed.nextLine();
+                String[] vehiclesAllowedString = vehiclesAllowed.split(" ");
+                int[] vehiclesAllowedArray = dbConnector.convertToIntArray(vehiclesAllowedString);
+
+                Scanner scannerPricePerLiter = new Scanner(System.in);
+                System.out.println("Enter Price per Liter");
+                int pricePerLiter = scannerVehiclesAllowed.nextInt();
+
+                if (dispenser.equals("1")) {
+                    dbConnector.addPetrolDispenser(manager.getPetrolDispensers().size() + 1, pricePerLiter, vehiclesAllowed);
+                } else {
+                    dbConnector.addDieselDispenser(manager.getDieselDispenser().size() + 1, pricePerLiter, vehiclesAllowed);
+                }
+                break;
+            }
             default:
 
         }

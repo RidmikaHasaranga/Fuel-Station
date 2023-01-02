@@ -88,6 +88,10 @@ public class OctaneFuelDispenserManager implements FuelDispenseManager{
         return totalProfit;
     }
 
+    public FuelQueue getFuelQueue() {
+        return fuelQueue;
+    }
+
     public float checkFuelLeft(){
         return repository.checkFuelLeft();
     }

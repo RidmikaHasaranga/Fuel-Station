@@ -13,4 +13,7 @@ public class WaitingQueue extends Queue{
         return customer;
     }
 
+    public Customer getFirstCustomer(){
+        return customers.get(0);
+    }
 }

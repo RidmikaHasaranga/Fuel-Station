@@ -63,6 +63,10 @@ public class FuelQueue extends Queue{
         return false;
     }
 
+    public WaitingQueue getWaitingQueue() {
+        return waitingQueue;
+    }
+
     //allowed vehicle types
     public int[] getVehiclesAllowed() {
         return allowedVehicle;
